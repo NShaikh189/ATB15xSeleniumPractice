@@ -1,5 +1,6 @@
 package org.thetestingacademy.Utility;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -20,6 +21,12 @@ public class WaitHelper {
     {
         wait = new WebDriverWait(driver, timeInSeconds);
         wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public static void waitForVisibilityOfElementLocated(WebDriver driver, By locator, Duration timeInSeconds)
+    {
+        wait = new WebDriverWait(driver, timeInSeconds);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     public static void waitForElementToBeSelected(WebDriver driver, WebElement element, Duration timeInSeconds)

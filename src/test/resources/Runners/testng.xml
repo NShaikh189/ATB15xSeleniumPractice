@@ -5,7 +5,7 @@
 
     <test name = "VWO Landing Page">
         <classes>
-            <class name = "org.thetestingacademy.ex03_Locators.TestSelenium15" />
+            <class name = "org.thetestingacademy.vwo.VWOLoginTest" />
         </classes>
 
     </test>

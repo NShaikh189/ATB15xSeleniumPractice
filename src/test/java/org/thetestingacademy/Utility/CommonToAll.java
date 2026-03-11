@@ -9,14 +9,14 @@ import java.time.Duration;
 public class CommonToAll {
 
 
-    public WebElement getElementByXpath(WebDriver driver, By path)
+    public static WebElement getElementByXpath(WebDriver driver, By path)
     {
         WaitHelper.waitForVisibilityOfElement(driver, driver.findElement(path), Duration.ofSeconds(2));
         return driver.findElement(path);
     }
 
 
-    public WebElement getElementByCssSelector(WebDriver driver, By path)
+    public static WebElement getElementByCssSelector(WebDriver driver, By path)
     {
         WaitHelper.waitForVisibilityOfElement(driver, driver.findElement(path), Duration.ofSeconds(2));
         return driver.findElement(path);
