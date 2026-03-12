@@ -12,33 +12,32 @@ import java.time.Duration;
 public class WaitHelper {
     public static WebDriverWait wait;
 
-    public static void WaitHelper(WebDriver driver, Duration time)
-    {
-        wait = new WebDriverWait(driver, time);
-    }
-
-    public static void waitForVisibilityOfElement(WebDriver driver, WebElement element, Duration timeInSeconds)
+    private WaitHelper()
+    {}
+    public static WebElement waitForVisibilityOfElement(WebDriver driver, WebElement element, Duration timeInSeconds)
     {
         wait = new WebDriverWait(driver, timeInSeconds);
-        wait.until(ExpectedConditions.visibilityOf(element));
+        return wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public static void waitForVisibilityOfElementLocated(WebDriver driver, By locator, Duration timeInSeconds)
+    public static WebElement waitForVisibilityOfElementLocated(WebDriver driver, By locator, Duration timeInSeconds)
     {
         wait = new WebDriverWait(driver, timeInSeconds);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    public static void waitForElementToBeSelected(WebDriver driver, WebElement element, Duration timeInSeconds)
+    public static boolean waitForElementToBeSelected(WebDriver driver, By locator, Duration timeInSeconds)
     {
         wait = new WebDriverWait(driver, timeInSeconds);
-        wait.until(ExpectedConditions.elementToBeSelected(element));
+        WebElement element = waitForVisibilityOfElementLocated(driver,locator,timeInSeconds);
+      return  wait.until(ExpectedConditions.elementToBeSelected(element));
 
     }
-    public static void waitForElementToBeClickable(WebDriver driver, WebElement element, Duration timeInSeconds)
+    public static WebElement waitForElementToBeClickable(WebDriver driver, By locator, Duration timeInSeconds)
     {
         wait = new WebDriverWait(driver, timeInSeconds);
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+        WebElement element = waitForVisibilityOfElementLocated(driver,locator,timeInSeconds);
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
     public static void waitForAlertIsPresent(WebDriver driver, Duration timeInSeconds)
     {
