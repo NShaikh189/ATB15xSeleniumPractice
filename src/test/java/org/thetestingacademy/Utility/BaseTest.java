@@ -21,7 +21,7 @@ public class BaseTest {
         DriverFactory df = new DriverFactory();
         driver = df.initDriver("Chrome");
         driver.manage().deleteAllCookies();
-        driver.manage().window().maximize();
+      //  driver.manage().window().maximize();
        // driver.switchTo().newWindow(WindowType.WINDOW);
     }
 
