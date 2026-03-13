@@ -2,6 +2,7 @@ package org.thetestingacademy.Factory;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.safari.SafariDriver;
 
 public class DriverFactory {
@@ -10,7 +11,9 @@ public class DriverFactory {
         WebDriver driver;
         switch (browserName.trim().toLowerCase()) {
             case "chrome":
-                driver = new ChromeDriver();
+                ChromeOptions co = new ChromeOptions();
+                co.addArguments("--start-maximized");
+                driver = new ChromeDriver(co);
                 break;
             case "safari":
                 driver = new SafariDriver();
