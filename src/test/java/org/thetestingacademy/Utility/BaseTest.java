@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeTest;
 import org.thetestingacademy.Factory.DriverFactory;
 
 import java.sql.Driver;
+import java.time.Duration;
 
 public class BaseTest {
 
@@ -21,8 +22,7 @@ public class BaseTest {
         DriverFactory df = new DriverFactory();
         driver = df.initDriver("Chrome");
         driver.manage().deleteAllCookies();
-      //  driver.manage().window().maximize();
-       // driver.switchTo().newWindow(WindowType.WINDOW);
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
     }
 
 
