@@ -27,9 +27,8 @@ public class CheapMacMini extends BaseTest {
             for (WebElement element : productList) {
                 List<WebElement> nameElement = element.findElements(By.cssSelector("a[title]"));
                 List<WebElement> priceElement = element.findElements(By.cssSelector(".hZ3P6w"));
-                // WebElement nameElement = element.findElement(By.cssSelector("a[title]"));
-                //WebElement priceElement = element.findElement(By.cssSelector(".hZ3P6w"));
 
+                //If no element found list returns empty value where as driver.findElement throws no such element exception
                 if (nameElement.isEmpty() || priceElement.isEmpty())
                     continue;
 
