@@ -17,7 +17,8 @@ public class DriverFactory {
                 ChromeOptions co = new ChromeOptions();
                 co.addArguments("--start-maximized");
                 co.addArguments("--incognito");
-                co.setPageLoadStrategy(PageLoadStrategy.EAGER);
+                co.addArguments("--disable-blink-features=AutomationControlled");
+            //    co.setPageLoadStrategy(PageLoadStrategy.EAGER);
                 driver = new ChromeDriver(co);
                 break;
             case "safari":
