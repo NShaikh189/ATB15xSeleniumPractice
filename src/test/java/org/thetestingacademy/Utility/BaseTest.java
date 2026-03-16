@@ -22,12 +22,15 @@ public class BaseTest {
         DriverFactory df = new DriverFactory();
         driver = df.initDriver("Chrome");
         driver.manage().deleteAllCookies();
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(180));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
 
 
-    @AfterTest
+   @AfterTest
     public void tearDown()
-    {driver.quit();
+    {
+      //  driver.close();
+        driver.quit();
     }
 }
