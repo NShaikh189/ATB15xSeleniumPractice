@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.annotations.Test;
+import org.thetestingacademy.Screenshots.TakeSceenshotHelper;
 import org.thetestingacademy.Utility.BaseTest;
 import org.thetestingacademy.Utility.CommonToAll;
 import org.thetestingacademy.Utility.WaitHelper;
@@ -92,6 +93,8 @@ public class BookingFlight extends BaseTest {
                     Duration.ofSeconds(5)).click();
 
             WaitHelper.waitJVM(driver,Duration.ofSeconds(20));
+
+            TakeSceenshotHelper.captureScreenshot(driver,"searchFlight.png");
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
