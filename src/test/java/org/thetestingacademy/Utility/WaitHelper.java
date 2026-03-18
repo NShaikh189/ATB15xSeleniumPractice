@@ -17,6 +17,9 @@ public class WaitHelper {
     public static void waitJVM(WebDriver driver, Duration timeInSeconds) throws InterruptedException {
         Thread.sleep(timeInSeconds.toMillis());
     }
+    public static void waitJVM(WebDriver driver, int timeInMillis) throws InterruptedException {
+        Thread.sleep(timeInMillis);
+    }
     public static boolean waitForPageLoad(WebDriver driver, Duration timeInSeconds)
     {
         WebDriverWait wait = new WebDriverWait(driver, timeInSeconds) ;
