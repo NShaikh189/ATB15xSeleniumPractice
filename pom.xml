@@ -12,6 +12,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <extentreports-version>5.1.2</extentreports-version>
   </properties>
 
   <dependencies>
@@ -20,7 +21,6 @@
           <groupId>org.testng</groupId>
           <artifactId>testng</artifactId>
           <version>7.12.0</version>
-          <scope>test</scope>
       </dependency>
       <!-- Source: https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
       <dependency>
@@ -39,7 +39,13 @@
           <artifactId>selenium-java</artifactId>
           <version>4.38.0</version>
       </dependency>
-
+      <!-- Source: https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+      <dependency>
+          <groupId>org.apache.logging.log4j</groupId>
+          <artifactId>log4j-core</artifactId>
+          <version>2.25.3</version>
+          <scope>compile</scope>
+      </dependency>
       <!-- Dependency for Taking screenshots Source: https://mvnrepository.com/artifact/commons-io/commons-io -->
       <dependency>
           <groupId>commons-io</groupId>
@@ -47,12 +53,18 @@
           <version>2.21.0</version>
           <scope>compile</scope>
       </dependency>
+      <dependency>
+          <groupId>com.aventstack</groupId>
+          <artifactId>extentreports</artifactId>
+          <version>${extentreports-version}</version>
+      </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+
   </dependencies>
     <build>
         <plugins>

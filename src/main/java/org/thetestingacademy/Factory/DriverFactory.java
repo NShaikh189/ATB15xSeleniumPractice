@@ -10,6 +10,12 @@ import java.time.Duration;
 
 public class DriverFactory {
 
+    private static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<WebDriver>();
+
+    public static WebDriver getTLDriver()
+    {
+        return tlDriver.get();
+    }
     public WebDriver initDriver(String browserName) {
         WebDriver driver;
         switch (browserName.trim().toLowerCase()) {
@@ -20,9 +26,11 @@ public class DriverFactory {
                 co.addArguments("--disable-blink-features=AutomationControlled");
             //    co.setPageLoadStrategy(PageLoadStrategy.EAGER);
                 driver = new ChromeDriver(co);
+                tlDriver.set(driver);
                 break;
             case "safari":
                 driver = new SafariDriver();
+                tlDriver.set(driver);
                 break;
 
             default: {
@@ -31,7 +39,7 @@ public class DriverFactory {
             }
         }
 
-        return driver;
+        return getTLDriver();
 
     }
 }
