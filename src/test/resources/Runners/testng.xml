@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="VWO Regression Suite" verbose="3" >
+<suite name="VWO Regression Suite" verbose="3" parallel="classes" thread-count="5" >
 
     <test name = "VWO Landing Page">
         <classes>
             <class name = "org.thetestingacademy.vwo.VWOLoginTest" />
+            <class name = "org.thetestingacademy.google.GoogleHomePageTest" />
+        </classes>
+
+    </test>
+
+   <!-- <test name = "Google Landing Page">
+        <classes>
+            <class name = "org.thetestingacademy.google.GoogleHomePageTest" />
+        </classes>
+    </test> -->
+    <test name = "Flipkar Test">
+        <classes>
+            <class name = "org.thetestingacademy.Flipkart.CheapMacMini"/>
         </classes>
 
     </test>
