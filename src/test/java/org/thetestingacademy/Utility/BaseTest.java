@@ -4,9 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.safari.SafariDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 import org.thetestingacademy.Factory.DriverFactory;
 
 import java.sql.Driver;
@@ -14,9 +12,9 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    public WebDriver driver;
+   public WebDriver driver;
 
-    @BeforeTest
+    @BeforeMethod
     public void setup()
     {
         DriverFactory df = new DriverFactory();
@@ -27,7 +25,8 @@ public class BaseTest {
     }
 
 
-   @AfterTest
+
+   @AfterMethod
     public void tearDown()
     {
       //  driver.close();
