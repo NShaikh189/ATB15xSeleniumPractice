@@ -4,6 +4,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.io.FileHandler;
 
 import java.io.File;
 import java.util.Properties;
@@ -14,19 +15,23 @@ public class TakeSceenshotHelper {
 
     }
 
-    public static void captureScreenshot(WebDriver driver, String name) {
+    public static String captureScreenshot(WebDriver driver, String name) {
+       String path = System.getProperty("user.dir") + "/Screenshots/" + name + "_img_" + System.currentTimeMillis() + ".png";
         try {
-            String path = System.getProperty("user.dir") + "/Screenshots/" + name + "_img_" + System.currentTimeMillis() + ".png";
 
             //Create one file src by capture as output type FILE
             //create another dest file as empty having a filename of the path
             //copy image file to destincation file
+
             TakesScreenshot screenshot = (TakesScreenshot) driver;
             File outputTypeFile = screenshot.getScreenshotAs(OutputType.FILE);
             File fnm = new File(path);
-            FileUtils.copyFile(outputTypeFile, fnm);
+            //FileUtils.copyFile(outputTypeFile, fnm);
+            FileHandler.copy(outputTypeFile,fnm);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        return path;
+
     }
 }

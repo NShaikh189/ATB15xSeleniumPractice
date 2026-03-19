@@ -1,10 +1,13 @@
 package org.thetestingacademy.Flipkart;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import org.thetestingacademy.Utility.BaseTest;
+import org.thetestingacademy.Utility.WaitHelper;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,8 +20,9 @@ public class CheapMacMini extends BaseTest {
 
     @Test
     public void cheapMacMiniTest() {
+
         driver.get("https://www.flipkart.com/search?q=macmini&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off");
-        List<WebElement> productList = driver.findElements(productListLocator);
+        List<WebElement> productList = WaitHelper.waitForVisibilityOfAllElements(driver,productListLocator, Duration.ofSeconds(15));
         HashMap<String, Integer> productPriceMap = new HashMap<>();
         int cheapPrice = Integer.MAX_VALUE;
         String cheapProduct = "";
