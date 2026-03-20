@@ -1,13 +1,9 @@
-package org.thetestingacademy.Utility;
+package org.thetestingacademy.Base;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WindowType;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.*;
 import org.thetestingacademy.Factory.DriverFactory;
 
-import java.sql.Driver;
 import java.time.Duration;
 
 public class BaseTest {

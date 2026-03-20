@@ -3,6 +3,9 @@
 
 <suite name="VWO Regression Suite" verbose="3" parallel="classes" thread-count="5" >
 
+    <listeners>
+        <listener class-name="org.thetestingacademy.listeners.TestAllureListener"/>
+    </listeners>
     <test name = "VWO Landing Page">
         <classes>
             <class name = "org.thetestingacademy.vwo.VWOLoginTest" />
@@ -16,7 +19,7 @@
             <class name = "org.thetestingacademy.google.GoogleHomePageTest" />
         </classes>
     </test> -->
-    <test name = "Flipkar Test">
+    <test name = "Flipkart Test">
         <classes>
             <class name = "org.thetestingacademy.Flipkart.CheapMacMini"/>
         </classes>
