@@ -1,14 +1,16 @@
 package org.thetestingacademy.vwo;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.thetestingacademy.Utility.BaseTest;
-import org.thetestingacademy.Utility.CommonToAll;
-import org.thetestingacademy.Utility.WaitHelper;
+import org.thetestingacademy.Base.BaseTest;
+import org.thetestingacademy.Factory.DriverFactory;
+import org.thetestingacademy.utils.CommonToAll;
+import org.thetestingacademy.utils.WaitHelper;
 
 import java.time.Duration;
 
@@ -24,15 +26,17 @@ public class VWOLoginTest extends BaseTest {
 
     WebElement loginIDElement;
 
+    @Severity(SeverityLevel.NORMAL)
     @Test
     public void doLogin() {
 
+        WaitHelper waitHelper = new WaitHelper(DriverFactory.getTLDriver());
         driver.get("https://app.vwo.com/#/login");
 
-        WaitHelper.waitForVisibilityOfElementLocated(driver, loginID, Duration.ofSeconds(2)).sendKeys("admin@admin.com");
-        WaitHelper.waitForVisibilityOfElementLocated(driver, password, Duration.ofSeconds(2)).sendKeys("admin");
-        WaitHelper.waitForVisibilityOfElementLocated(driver, signBtn, Duration.ofSeconds(2)).click();
-        WaitHelper.waitForVisibilityOfElementLocated(driver, errorMsgNotification, Duration.ofSeconds(2));
+        waitHelper.waitForVisibilityOfElementLocated( loginID, Duration.ofSeconds(2)).sendKeys("admin@admin.com");
+        waitHelper.waitForVisibilityOfElementLocated(password, Duration.ofSeconds(2)).sendKeys("admin");
+        waitHelper.waitForVisibilityOfElementLocated(signBtn, Duration.ofSeconds(2)).click();
+        waitHelper.waitForVisibilityOfElementLocated(errorMsgNotification, Duration.ofSeconds(2));
 
         String errorMsg = CommonToAll.getElementByCssSelector(driver, errorMsgNotification).getText();
         Assert.assertEquals(errorMsg, "Your email, password, IP address or location did not match");
