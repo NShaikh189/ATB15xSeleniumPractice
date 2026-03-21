@@ -1,15 +1,13 @@
 package org.thetestingacademy.Booking;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Wait;
 import org.testng.annotations.Test;
+import org.thetestingacademy.Factory.DriverFactory;
 import org.thetestingacademy.Screenshots.TakeSceenshotHelper;
-import org.thetestingacademy.Utility.BaseTest;
-import org.thetestingacademy.Utility.CommonToAll;
-import org.thetestingacademy.Utility.WaitHelper;
+import org.thetestingacademy.Base.BaseTest;
+import org.thetestingacademy.utils.WaitHelper;
 
 import java.time.Duration;
 import java.util.List;
@@ -26,24 +24,25 @@ public class BookingFlight extends BaseTest {
     By exploreButtonLocator = By.xpath("//button[@data-ui-name='button_search_submit']");
     @Test
     public void bookFlightTest() {
+        WaitHelper waitHelper = new WaitHelper(DriverFactory.getTLDriver());
         driver.get("https://www.booking.com");
 
         Actions action = new Actions(driver);
 
         try {
-            WaitHelper.waitForVisibilityOfElementLocated(driver, dismissSignLocator, Duration.ofSeconds(10)).click();
-            WaitHelper.waitForVisibilityOfElementLocated(driver, flightsLocator, Duration.ofSeconds(12)).click();
-            WaitHelper.waitForElementToBeClickable(driver,
+            waitHelper.waitForVisibilityOfElementLocated(dismissSignLocator, Duration.ofSeconds(10)).click();
+            waitHelper.waitForVisibilityOfElementLocated(flightsLocator, Duration.ofSeconds(12)).click();
+            waitHelper.waitForElementToBeClickable(
                     leavingFromLocator,
                     Duration.ofSeconds(10)).click();
 
-            WaitHelper.waitForElementToBeClickable(driver,clearSearchDestinationLocator,Duration.ofSeconds(10)).click();
+            waitHelper.waitForElementToBeClickable(clearSearchDestinationLocator,Duration.ofSeconds(10)).click();
 
-            WebElement searchBoardingCountry =  WaitHelper.waitForVisibilityOfElementLocated(driver,
+            WebElement searchBoardingCountry =  waitHelper.waitForVisibilityOfElementLocated(
                     flightsSearchBoxLocator,Duration.ofSeconds(10));
 
             searchBoardingCountry.sendKeys("PNQ");
-            List<WebElement> searchLeavingCountryList = WaitHelper.waitForVisibilityOfAllElements(driver, searchCountryListLocator, Duration.ofSeconds(15));
+            List<WebElement> searchLeavingCountryList = waitHelper.waitForVisibilityOfAllElements(searchCountryListLocator, Duration.ofSeconds(15));
 
             for (WebElement element : searchLeavingCountryList) {
 
@@ -51,8 +50,8 @@ public class BookingFlight extends BaseTest {
                 String leavingCountryName = leavingCountryElement.getText();
                 System.out.println(leavingCountryName);
                 if (leavingCountryName.contains("Pune International Airport")) {
-                    WaitHelper.waitForVisibilityOfElement(driver, leavingCountryElement, Duration.ofSeconds(2));
-                    WaitHelper.waitForElementToBeClickable(driver, leavingCountryElement, Duration.ofSeconds(2)).click();
+                    waitHelper.waitForVisibilityOfElement( leavingCountryElement, Duration.ofSeconds(2));
+                    waitHelper.waitForElementToBeClickable(leavingCountryElement, Duration.ofSeconds(2)).click();
                     Thread.sleep(5000);
                     break;
 
@@ -60,18 +59,18 @@ public class BookingFlight extends BaseTest {
             }
 
 
-            WaitHelper.waitForElementToBeClickable(driver,
+            waitHelper.waitForElementToBeClickable(
                     goingToCountryLocator,
                     Duration.ofSeconds(10)).click();
 
 
-            WebElement searchCountry =  WaitHelper.waitForVisibilityOfElementLocated(driver,
+            WebElement searchCountry =  waitHelper.waitForVisibilityOfElementLocated(
                     flightsSearchBoxLocator,Duration.ofSeconds(10));
 
             searchCountry.sendKeys("DEL");
 
 
-    List<WebElement> searchCountryList = WaitHelper.waitForVisibilityOfAllElements(driver, searchCountryListLocator, Duration.ofSeconds(15));
+    List<WebElement> searchCountryList = waitHelper.waitForVisibilityOfAllElements( searchCountryListLocator, Duration.ofSeconds(15));
 
             for (WebElement element : searchCountryList) {
 
@@ -79,8 +78,8 @@ public class BookingFlight extends BaseTest {
                 String countryName = countryElement.getText();
                 System.out.println(countryName);
                 if (countryName.contains("Delhi International Airport")) {
-                    WaitHelper.waitForVisibilityOfElement(driver, countryElement, Duration.ofSeconds(2));
-                    WaitHelper.waitForElementToBeClickable(driver, countryElement, Duration.ofSeconds(2)).click();
+                    waitHelper.waitForVisibilityOfElement( countryElement, Duration.ofSeconds(2));
+                    waitHelper.waitForElementToBeClickable( countryElement, Duration.ofSeconds(2)).click();
                     Thread.sleep(5000);
                     break;
 
@@ -88,13 +87,13 @@ public class BookingFlight extends BaseTest {
             }
 
        //click on Explore or Search button
-            WaitHelper.waitForElementToBeClickable(driver,
+            waitHelper.waitForElementToBeClickable(
                     exploreButtonLocator,
                     Duration.ofSeconds(5)).click();
 
-            WaitHelper.waitJVM(driver,Duration.ofSeconds(20));
+            waitHelper.waitJVM(Duration.ofSeconds(20));
 
-            TakeSceenshotHelper.captureScreenshot(driver,"searchFlight.png");
+            TakeSceenshotHelper.captureScreenshot(DriverFactory.getTLDriver(),"searchFlight.png");
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
